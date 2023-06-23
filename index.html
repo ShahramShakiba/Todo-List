@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="HTML, CSS, JavaScript, Frontend, Developer, Website"
+    />
+    <meta name="author" content="Shahram Shakiba" />
+    <!--! RemixIcon !-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css"
+      integrity="sha512-0JEaZ1BDR+FsrPtq5Ap9o05MUwn8lKs2GiCcRVdOH0qDcUcCoMKi8fDVJ9gnG8VN1Mp/vuWw2sMO0SQom5th4g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./main.css" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <!--===================$ HEADER $===================-->
+    <header>
+      <section class="greeting">
+        <h1 class="header">
+          <span class="first-letter">T</span>
+          <span class="bubble-red"></span>
+          <span class="second-letter">D</span>
+          <span class="bubble-blue"></span>
+          <span class="bubble-list">LIST</span>
+        </h1>
+
+        <h2 class="title">
+          What's up, <input type="text" id="name" placeholder="Your Name" />
+        </h2>
+      </section>
+    </header>
+
+    <!--===================$ MAIN $===================-->
+    <section class="create-todo">
+      <form class="todo-form">
+        <h4>What's on your todo list?</h4>
+
+        <div class="input-container">
+          <input
+            type="text"
+            name="content"
+            class="content"
+            placeholder="write your todo"
+          />
+
+          <div class="select">
+            <select class="filter-todo" name="todo">
+              <option class="filter-option" value="all">All</option>
+              <option class="filter-option" value="completed">Completed</option>
+              <option class="filter-option" value="uncompleted">
+                Uncompleted
+              </option>
+            </select>
+          </div>
+        </div>
+        <!-- <i class="ri-arrow-down-s-line"></i> -->
+
+        <!----------! Submit !---------->
+        <input class='todo-submit' type="submit" value="Add to do" />
+      </form>
+
+      <div class="todo-container">
+        <ul class="todo-list">
+          <!-- <li class="todo">
+            <p class="todo__title">todo #1</p>
+            <div class="todo__details">
+              <span class="todo__createAt">1402/1/28</span>
+              <button><i class="todo__check ri-check-line"></i></button>
+              <button><i class="todo__remove ri-delete-bin-line"></i></button>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+    </section>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

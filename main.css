@@ -1,0 +1,215 @@
+/*====================$ GOOGLE FONTS $====================*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&family=Raleway:wght@400;500&display=swap');
+
+/*======================$ BASE $======================-*/
+:root {
+  --primary: #ea40a4;
+  --secondary: #3a82ee;
+  --light: #eee;
+  --gray: #888;
+  --dark: #313154;
+  --danger: #ff5b57;
+
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  --bubble-red: 0px 0px 6px 1px rgba(234, 64, 164, 0.6);
+  --bubble-blue: 0px 0px 6px 1px rgba(58, 130, 238, 0.6);
+}
+
+* {
+  font-family: 'montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  color: var(--dark);
+  background: var(--light);
+}
+
+section {
+  margin: 2rem 1.5rem;
+}
+
+h4 {
+  color: var(--gray);
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+input:not([type='radio']):not([type='checkbox']),
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: initial;
+}
+
+/*======================$ HEADER $======================-*/
+.greeting .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 13rem;
+  font-size: 1.7rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 3px solid #88888846;
+  padding-bottom: 5px;
+}
+
+.bubble-red {
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  box-shadow: var(--bubble-red);
+  margin-inline: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.bubble-red:hover {
+  background-color: var(--primary);
+  cursor: pointer;
+}
+
+.bubble-blue {
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  border: 2px solid var(--secondary);
+  border-radius: 50%;
+  box-shadow: var(--bubble-blue);
+  margin-inline: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.bubble-blue:hover {
+  background-color: var(--secondary);
+  cursor: pointer;
+}
+
+.bubble-list {
+  margin-left: 10px;
+  letter-spacing: 2px;
+}
+
+.greeting .title #name {
+  margin-left: 0.5rem;
+  flex: 1 1 0%;
+  color: var(--gray);
+}
+
+.greeting .title,
+.greeting .title #name {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/*===================$ Create New TODO $===================-*/
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.create-todo input[type='text'] {
+  width: 30rem;
+  background-color: #fff;
+  font-size: 1.125rem;
+  padding: 1rem 1.5rem;
+  color: var(--dark);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+.create-todo input[type='submit'] {
+  width: 10rem;
+  background-color: var(--primary);
+  padding: 0.8rem 1.5rem;
+  font-size: 1.125rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  flex: 1 1 0%;
+}
+
+.create-todo input[type='submit']:hover {
+  opacity: 0.7;
+}
+
+.filter-todo {
+  display: flex;
+  justify-content: center;
+  width: 10rem;
+  background-color: #fff;
+  font-size: 1rem;
+  padding: 1rem 0.9rem;
+  color: var(--dark);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  margin: 0 0 1.5rem 1rem;
+  border: none;
+  outline: none;
+  /* appearance: none; */
+}
+
+/*===================$ TODO List $===================-*/
+.todo-container {
+  max-width: 41rem;
+}
+
+.todo {
+  min-width: 27rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  margin: 2rem 0 0;
+  padding: 1rem 0.9rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s linear;
+}
+
+.todo__details {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo li {
+  flex: 1;
+  color: var(--primaryColor);
+  font-weight: 600;
+}
+
+.todo span {
+  display: block;
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+
+.todo span i {
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.todo__remove {
+  color: var(--danger);
+  font-size: 1rem;
+}
+
+.todo__check {
+  color: var(--secondary);
+  font-size: 1rem;
+}
