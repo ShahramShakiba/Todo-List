@@ -31,16 +31,19 @@ const addNewTodo = (e) => {
 
   myTodo.push(newTodo);
 
-  createMyTodo(myTodo);
+  filterTodo();
 };
 
 const createMyTodo = (myTodo) => {
   // Build myTodo on DOM
   let result = '';
   myTodo.forEach((todo) => {
+    //! if isCompleted is true -> add completed class
     result += `  
      <li class="todo">
-       <p class="todo__title">${todo.title}</p>
+       <p class="todo__title ${todo.isCompleted && 'completed'}">
+          ${todo.title}
+       </p>
 
        <div class="todo__details">
          <span class="todo__createAt">
@@ -67,33 +70,39 @@ const createMyTodo = (myTodo) => {
 
   // add new todo to DOM
   todoList.innerHTML = result;
-
   // reset input todo every time
   todoInput.value = ' ';
 
   /*================$ REMOVE & CHECK TODO $================= */
-  //? since our buttons are here and to access them
+  //? since our buttons are here -> to access them
   const removeBtn = [...document.querySelectorAll('.todo__remove')];
-
   removeBtn.forEach((btn) => btn.addEventListener('click', removeTodo));
+
+  const checkBtn = [...document.querySelectorAll('.todo__check')];
+  checkBtn.forEach((btn) => btn.addEventListener('click', checkTodo));
 };
 
 function removeTodo(e) {
   let todoId = Number(e.target.dataset.todoId);
-
   myTodo = myTodo.filter((todo) => todo.id !== todoId);
+  filterTodo();
+}
 
-  createMyTodo(myTodo);
+function checkTodo(e) {
+  let todoId = Number(e.target.dataset.todoId);
+  const todo = myTodo.find((todo) => todo.id === todoId);
+  todo.isCompleted = !todo.isCompleted;
+  filterTodo();
 }
 
 todoForm.addEventListener('submit', addNewTodo);
 
 /*===================$ Select Options $===================== */
 const selectOption = document.querySelector('.filter-todo');
-const filterTodo = (e) => {
-  const filter = e.target.value;
+let filterValue = 'all';
 
-  switch (filter) {
+const filterTodo = () => {
+  switch (filterValue) {
     case 'all': {
       createMyTodo(myTodo);
       break;
@@ -116,4 +125,7 @@ const filterTodo = (e) => {
   }
 };
 
-selectOption.addEventListener('change', filterTodo);
+selectOption.addEventListener('change', (e) => {
+  filterValue = e.target.value;
+  filterTodo();
+});

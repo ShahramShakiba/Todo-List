@@ -231,11 +231,6 @@ button > i {
   cursor: pointer;
 }
 
-.completed {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
 .todo__remove {
   color: var(--danger);
   font-size: 1rem;
@@ -263,4 +258,9 @@ button > i {
   padding: 3px;
   background-color: var(--secondary);
   color: #fff;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
