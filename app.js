@@ -4,7 +4,7 @@ let alertShow = false;
 setInterval(() => {
   document.title = alertShow ? 'Welcome 😍' : 'Follow for more! ✌';
 
-  // title switch alternate between the two values
+  //? title switch alternate between the two values
   alertShow = !alertShow;
 }, 1000);
 
@@ -14,7 +14,6 @@ const todoInput = document.querySelector('.content'),
   todoList = document.querySelector('.todo-list');
 
 let myTodo = [];
-
 const addNewTodo = (e) => {
   // prevent the refreshing page
   e.preventDefault();
@@ -38,7 +37,6 @@ const addNewTodo = (e) => {
 const createMyTodo = (myTodo) => {
   // Build myTodo on DOM
   let result = '';
-
   myTodo.forEach((todo) => {
     result += `  
      <li class="todo">
@@ -50,11 +48,15 @@ const createMyTodo = (myTodo) => {
          </span>
  
          <div class="details__button">
-            <button data-todo = ${todo.id}>
-               <i class="todo__check ri-check-line"></i>
+
+            <button class='todo__check' 
+            data-todo-id = ${todo.id}>
+               <i class="ri-check-line"></i>
             </button>
-            <button data-todo = ${todo.id}>
-               <i class="todo__remove ri-delete-bin-line"></i>
+
+            <button class='todo__remove' 
+            data-todo-id = ${todo.id}>
+               <i class="ri-delete-bin-line"></i>
             </button>
          </div>
        </div>
@@ -68,13 +70,26 @@ const createMyTodo = (myTodo) => {
 
   // reset input todo every time
   todoInput.value = ' ';
+
+  /*================$ REMOVE & CHECK TODO $================= */
+  //? since our buttons are here and to access them
+  const removeBtn = [...document.querySelectorAll('.todo__remove')];
+
+  removeBtn.forEach((btn) => btn.addEventListener('click', removeTodo));
 };
+
+function removeTodo(e) {
+  let todoId = Number(e.target.dataset.todoId);
+
+  myTodo = myTodo.filter((todo) => todo.id !== todoId);
+
+  createMyTodo(myTodo);
+}
 
 todoForm.addEventListener('submit', addNewTodo);
 
-/*===================$ Select Options $=================== */
+/*===================$ Select Options $===================== */
 const selectOption = document.querySelector('.filter-todo');
-
 const filterTodo = (e) => {
   const filter = e.target.value;
 
