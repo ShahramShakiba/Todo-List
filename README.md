@@ -2,9 +2,9 @@
 **_Todo List_** :<br/>
   > This is a mini-project of building a Todo-List to practice `HTML`, `CSS` and `JavaScript`.  <br/>
 
-- A _Counter application_ is a useful tool for tracking and monitoring various types of data. It can help individuals and businesses to make data-driven decisions and manage their resources more effectively.
+- A _Todo List_ is a list of tasks or activities that need to be completed, usually organized in order of priority or deadline. It is commonly used as a tool for personal productivity and time management. <br/>
 
-- **`A few benefits of a counter app :`**<br/>
+- **`A few benefits of Todo-list :`**<br/>
 **_1. Tracking progress_ :**<br/>
 such as the number of times a product has been sold or the number of visitors to a website.<br/>
 **_2. Transparency_ :**<br/>
@@ -15,10 +15,10 @@ A counter can help hold individuals or teams accountable for meeting certain tar
 By analyzing the data collected by a counter, you can gain insights into trends and patterns, which can inform future decisions and strategies.
 
 ### Video
-https://github.com/ShahramShakiba/Passenger-Counter/assets/110089830/451754d0-c7ef-4208-a8b9-226b3fbfd091
+
 
 ## Try it live :
- https://shahramshakiba.github.io/Passenger-Counter/
+ https://
 
  ## Stay in touch :
  • ` Author ` - <a href="https://t.me/DevZEEMO">Shahram Shakiba</a> <br/>
