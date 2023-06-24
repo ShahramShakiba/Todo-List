@@ -18,7 +18,7 @@ When you have a clear plan of what needs to be done, you can avoid feeling overw
 
 
 ## Try it live :
- [https://](https://shahramshakiba.github.io/todoList/)
+ https://shahramshakiba.github.io/todoList/
 
  ## Stay in touch :
  • ` Author ` - <a href="https://t.me/DevZEEMO">Shahram Shakiba</a> <br/>
