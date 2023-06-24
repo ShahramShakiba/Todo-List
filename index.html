@@ -8,7 +8,7 @@
       content="HTML, CSS, JavaScript, Frontend, Developer, Website"
     />
     <meta name="author" content="Shahram Shakiba" />
-    <!--! RemixIcon !-->
+    <!-- RemixIcon -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css"
@@ -51,6 +51,7 @@
             placeholder="write your todo ..."
           />
 
+          <!-- options -->
           <div class="select">
             <select class="filter-todo" name="todo">
               <option class="filter-option" value="all">All</option>
@@ -67,24 +68,19 @@
       </form>
 
       <div class="todo-container">
-        <ul class="todo-list">         
-          <!-- <li class="todo">
-            <p class="todo__title">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ex
-              perferendis possimus voluptates? Rem laboriosam voluptatibus dolor
-              maiores! Facere laboriosam vel assumenda sed ullam adipisci, omnis
-              enim eligendi quia nisi!
-            </p>
-            <div class="todo__details">
-              <span class="todo__createAt">1402/1/28</span>
+        <ul class="todo-list"></ul>
+      </div>
 
-              <div class="details__button">
-                <button><i class="todo__check ri-check-line"></i></button>
-                <button><i class="todo__remove ri-delete-bin-line"></i></button>
-              </div>
-            </div>
-          </li> -->
-        </ul>
+      <div class="backdrop hidden"></div>
+
+      <!---------$ Modal $--------->
+      <div class="modal hidden" id="modal">
+        <div class="modal__header">
+          <h1>Modal</h1>
+          <button class="close-modal">&times;</button>
+        </div>
+
+        <div class="modal__body"></div>
       </div>
     </section>
 

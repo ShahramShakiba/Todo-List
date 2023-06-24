@@ -4,41 +4,76 @@ let alertShow = false;
 setInterval(() => {
   document.title = alertShow ? 'Welcome 😍' : 'Follow for more! ✌';
 
-  //? title switch alternate between the two values
+  //-> title switch alternatively between the two values
   alertShow = !alertShow;
 }, 1000);
+
+/*-> END <-*/
+
+/*===================$ CALL LocalStorage $================== */
+/*-> to get all todos we have in localStorage and display on DOM when DOM is reloaded  */
+document.addEventListener('DOMContentLoaded', (e) => {
+  //-> get all todos from localStorage
+  const todos = getAllTodos();
+
+  //-> create todo
+  createMyTodo(todos);
+});
+
+function getAllTodos() {
+  const ss = JSON.parse(localStorage.getItem('todos')) || [];
+  return ss;
+}
+
+function saveTodo(todo) {
+  const ss = getAllTodos();
+  ss.push(todo);
+
+  localStorage.setItem('todos', JSON.stringify(ss));
+  return ss;
+}
+
+function saveAllTodos(todos) {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+/*-> END <-*/
 
 /*===================$ Create NEW TODO $=================== */
 const todoInput = document.querySelector('.content'),
   todoForm = document.querySelector('.todo-form'),
   todoList = document.querySelector('.todo-list');
 
-let myTodo = [];
-const addNewTodo = (e) => {
-  // prevent the refreshing page
+function addNewTodo(e) {
   e.preventDefault();
 
-  // if the input value is empty or only contains whitespace characters
-  if (!todoInput.value.trim()) return;
+  const todoTitle = todoInput.value.trim();
+  if (todoTitle === '') {
+    alert('Please enter your todo');
+    return;
+  }
 
-  // store user data
+  //-> store user data
   const newTodo = {
     id: Date.now(),
-    createAt: new Date().toISOString(),
-    title: todoInput.value,
+    createdAt: new Date().toISOString(),
+    title: todoTitle,
     isCompleted: false,
   };
 
-  myTodo.push(newTodo);
+  saveTodo(newTodo);
 
-  filterTodo();
-};
+  /*-> to avoid that when we are in "completed" and if a new todo is added, this new todo is not shown in completed */
+  filterTodos();
+}
 
-const createMyTodo = (myTodo) => {
-  // Build myTodo on DOM
+/*-------> END <-------*/
+
+const createMyTodo = (todos) => {
   let result = '';
-  myTodo.forEach((todo) => {
-    //! if isCompleted is true -> add completed class
+
+  todos.forEach((todo) => {
+    //-> if "isCompleted" is true -> add completed class
     result += `  
      <li class="todo">
        <p class="todo__title ${todo.isCompleted && 'completed'}">
@@ -47,7 +82,7 @@ const createMyTodo = (myTodo) => {
 
        <div class="todo__details">
          <span class="todo__createAt">
-         ${new Date(todo.createAt).toLocaleDateString()}
+         ${new Date(todo.createdAt).toLocaleDateString()}
          </span>
  
          <div class="details__button">
@@ -57,75 +92,141 @@ const createMyTodo = (myTodo) => {
                <i class="ri-check-line"></i>
             </button>
 
+            <button class='todo__edit' 
+            data-todo-id="${todo.id}">
+               <i class="ri-pencil-line"></i>
+            </button>
+
             <button class='todo__remove' 
             data-todo-id = ${todo.id}>
                <i class="ri-delete-bin-line"></i>
             </button>
-         </div>
+          </div>
+
+          <div class="modal hidden" id="modal">
+            <div class="modal__header">
+              <h1>Modal</h1>
+              <button class="close-modal">&times;</button>
+            </div>
+  
+            <div class="modal__body">
+              <p class="todo__title">
+              ${todo.title}
+              </p>
+            </div>
+          </div>
        </div>
- 
      </li>
    `;
   });
 
-  // add new todo to DOM
+  //-> add new todo to DOM
   todoList.innerHTML = result;
-  // reset input todo every time
-  todoInput.value = ' ';
 
-  /*================$ REMOVE & CHECK TODO $================= */
-  //? since our buttons are here -> to access them
-  const removeBtn = [...document.querySelectorAll('.todo__remove')];
-  removeBtn.forEach((btn) => btn.addEventListener('click', removeTodo));
+  //-> reset input todo every time
+  todoInput.value = '';
 
-  const checkBtn = [...document.querySelectorAll('.todo__check')];
-  checkBtn.forEach((btn) => btn.addEventListener('click', checkTodo));
+  todoForm.addEventListener('submit', addNewTodo);
+
+  /*---------------> END <----------------*/
+
+  /*-------------$ REMOVE & CHECK TODO $-------------- */
+  //-> since our buttons are here -> to access them
+  const removeBtns = [...document.querySelectorAll('.todo__remove')];
+  removeBtns.forEach((btn) => btn.addEventListener('click', removeTodo));
+
+  const checkBtns = [...document.querySelectorAll('.todo__check')];
+  checkBtns.forEach((btn) => btn.addEventListener('click', checkTodo));
+
+  const editBtns = [...document.querySelectorAll('.todo__edit')];
+  editBtns.forEach((btn) => btn.addEventListener('click', showModal));
 };
 
+/*------- REMOVE --------*/
 function removeTodo(e) {
-  let todoId = Number(e.target.dataset.todoId);
-  myTodo = myTodo.filter((todo) => todo.id !== todoId);
-  filterTodo();
+  let todos = getAllTodos();
+
+  const todoId = Number(e.target.dataset.todoId);
+  todos = todos.filter((t) => t.id !== todoId);
+
+  saveAllTodos(todos);
+
+  /*-> to prevent that when a todo is deleted, the rest of the todos are not shown in the "uncompleted" section */
+  filterTodos();
 }
 
+/*------- CHECK --------*/
 function checkTodo(e) {
-  let todoId = Number(e.target.dataset.todoId);
-  const todo = myTodo.find((todo) => todo.id === todoId);
+  const todos = getAllTodos();
+
+  const todoId = Number(e.target.dataset.todoId);
+  const todo = todos.find((t) => t.id === todoId);
   todo.isCompleted = !todo.isCompleted;
-  filterTodo();
+
+  saveAllTodos(todos);
+
+  //-> to check which checkBtn is clicked -> store in completed
+  filterTodos();
 }
 
-todoForm.addEventListener('submit', addNewTodo);
+/*------- EDIT --------*/
+const closeModalBtn = document.querySelector('.close-modal'),
+  backDrop = document.querySelector('.backdrop'),
+  modal = document.querySelector('.modal');
 
-/*===================$ Select Options $===================== */
-const selectOption = document.querySelector('.filter-todo');
+const closeModal = () => {
+  backDrop.classList.add('hidden');
+  modal.classList.add('hidden');
+};
+
+const showModal = (e) => {
+  let todos = getAllTodos();
+
+  backDrop.classList.remove('hidden');
+  modal.classList.remove('hidden');
+
+  saveAllTodos(todos);
+  filterTodos();
+};
+
+closeModalBtn.addEventListener('click', closeModal);
+backDrop.addEventListener('click', closeModal);
+
+/*-> END <-*/
+
+/*==================$ Select Options $===================== */
+const selectOptions = document.querySelector('.filter-todo');
 let filterValue = 'all';
 
-const filterTodo = () => {
+const filterTodos = () => {
+  const todos = getAllTodos();
+
   switch (filterValue) {
     case 'all': {
-      createMyTodo(myTodo);
+      createMyTodo(todos);
       break;
     }
 
     case 'completed': {
-      const filterMyTodo = myTodo.filter((todo) => todo.isCompleted);
+      const filterMyTodo = todos.filter((t) => t.isCompleted);
       createMyTodo(filterMyTodo);
       break;
     }
 
     case 'uncompleted': {
-      const filterMyTodo = myTodo.filter((todo) => !todo.isCompleted);
+      const filterMyTodo = todos.filter((t) => !t.isCompleted);
       createMyTodo(filterMyTodo);
       break;
     }
 
     default:
-      createMyTodo(myTodo);
+      createMyTodo(todos);
   }
 };
 
-selectOption.addEventListener('change', (e) => {
+selectOptions.addEventListener('change', (e) => {
+  // to get the option select that the user chooses
   filterValue = e.target.value;
-  filterTodo();
+
+  filterTodos();
 });
