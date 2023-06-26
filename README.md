@@ -1,4 +1,4 @@
-# Under Constructing
+# Description
 **_Todo List_** :<br/>
   > This is a mini-project of building a Todo-List to practice `HTML`, `CSS` and `JavaScript`.  <br/>
 
