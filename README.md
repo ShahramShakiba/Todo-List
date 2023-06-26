@@ -1,6 +1,6 @@
 # Description
 **_Todo List_** :<br/>
-  > This is a mini-project of building a Todo-List to practice `HTML`, `CSS` and `JavaScript`.  <br/>
+  > This is a mini-project of building a Todo-List to practice `HTML`, `CSS` and `JavaScript` using if else statment - switch case - template literal - forEach - filter - find - map - DOM eventTarget - localStorage .  <br/>
 
 - A _Todo List_ is a list of tasks or activities that need to be completed, usually organized in order of priority or deadline. It is commonly used as a tool for personal productivity and time management. <br/>
 
@@ -13,6 +13,9 @@ By prioritizing tasks and setting deadlines, you can manage your time more effec
 A to-do list helps you keep track of all your tasks in one place, making it easier to stay organized and avoid forgetting important tasks.<br/>
 **_4. Reduced stress_ :**<br/>
 When you have a clear plan of what needs to be done, you can avoid feeling overwhelmed or stressed about the amount of work you have to do.
+
+- In this project I used :
+- 
 
 ### Video
 
