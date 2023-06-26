@@ -75,18 +75,17 @@ const createMyTodo = (todos) => {
   todos.forEach((todo) => {
     //-> if "isCompleted" is true -> add completed class
     result += `  
-     <li class="todo">
-       <p class="todo__title ${todo.isCompleted && 'completed'}">
+    <li class="todo">
+      <p class="todo__title ${todo.isCompleted && 'completed'}">
           ${todo.title}
-       </p>
+      </p>
 
-       <div class="todo__details">
+      <div class="todo__details">
          <span class="todo__createAt">
          ${new Date(todo.createdAt).toLocaleDateString()}
          </span>
  
          <div class="details__button">
-
             <button class='todo__check' 
             data-todo-id = ${todo.id}>
                <i class="ri-check-line"></i>
@@ -101,21 +100,8 @@ const createMyTodo = (todos) => {
             data-todo-id = ${todo.id}>
                <i class="ri-delete-bin-line"></i>
             </button>
-          </div>
-
-          <div class="modal hidden" id="modal">
-            <div class="modal__header">
-              <h1>Modal</h1>
-              <button class="close-modal">&times;</button>
-            </div>
-  
-            <div class="modal__body">
-              <p class="todo__title">
-              ${todo.title}
-              </p>
-            </div>
-          </div>
-       </div>
+          </div> 
+      </div>
      </li>
    `;
   });
@@ -139,23 +125,24 @@ const createMyTodo = (todos) => {
   checkBtns.forEach((btn) => btn.addEventListener('click', checkTodo));
 
   const editBtns = [...document.querySelectorAll('.todo__edit')];
-  editBtns.forEach((btn) => btn.addEventListener('click', showModal));
+  editBtns.forEach((btn) => btn.addEventListener('click', editTodo));
 };
 
-/*------- REMOVE --------*/
+/*--------- REMOVE ----------*/
 function removeTodo(e) {
   let todos = getAllTodos();
 
   const todoId = Number(e.target.dataset.todoId);
   todos = todos.filter((t) => t.id !== todoId);
 
+  // Saves the updated "todos" array to localStorage
   saveAllTodos(todos);
 
   /*-> to prevent that when a todo is deleted, the rest of the todos are not shown in the "uncompleted" section */
   filterTodos();
 }
 
-/*------- CHECK --------*/
+/*--------- CHECK ----------*/
 function checkTodo(e) {
   const todos = getAllTodos();
 
@@ -169,28 +156,38 @@ function checkTodo(e) {
   filterTodos();
 }
 
-/*------- EDIT --------*/
-const closeModalBtn = document.querySelector('.close-modal'),
-  backDrop = document.querySelector('.backdrop'),
-  modal = document.querySelector('.modal');
+/*--------- EDIT ----------*/
+function editTodo(e) {
+  const todos = getAllTodos();
 
-const closeModal = () => {
-  backDrop.classList.add('hidden');
-  modal.classList.add('hidden');
-};
+  const todoId = Number(e.target.dataset.todoId);
+  const todo = todos.find((t) => t.id === todoId);
 
-const showModal = (e) => {
-  let todos = getAllTodos();
+  const input = e.target.closest('.todo').querySelector('.todo__title');
+  input.contentEditable = true;
+  input.focus();
+  const initialValue = input.innerText;
 
-  backDrop.classList.remove('hidden');
-  modal.classList.remove('hidden');
+  /* when the user leaves the input field -> create new todo of editing */
+  input.addEventListener('blur', () => {
+    input.contentEditable = false;
+    const updatedValue = input.innerText.trim();
 
-  saveAllTodos(todos);
-  filterTodos();
-};
+    if (updatedValue === initialValue) {
+      return;
+    }
 
-closeModalBtn.addEventListener('click', closeModal);
-backDrop.addEventListener('click', closeModal);
+    const newTodos = todos.map((todo) => {
+      if (todo.id === todoId) {
+        todo.title = updatedValue;
+      }
+      return todo;
+    });
+
+    saveAllTodos(newTodos);
+    filterTodos();
+  });
+}
 
 /*-> END <-*/
 
