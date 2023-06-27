@@ -20,23 +20,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
   createMyTodo(todos);
 });
 
-function getAllTodos() {
-  const savedTodo = JSON.parse(localStorage.getItem('todos')) || [];
-  return savedTodo;
-}
-
-function saveTodo(todo) {
-  const savedTodo = getAllTodos();
-  savedTodo.push(todo);
-
-  localStorage.setItem('todos', JSON.stringify(savedTodo));
-  return savedTodo;
-}
-
-function saveAllTodos(todos) {
-  localStorage.setItem('todos', JSON.stringify(todos));
-}
-
 /*-> END <-*/
 
 /*===================$ Create NEW TODO $=================== */
@@ -44,10 +27,13 @@ const todoInput = document.querySelector('.content'),
   todoForm = document.querySelector('.todo-form'),
   todoList = document.querySelector('.todo-list');
 
+todoForm.addEventListener('submit', addNewTodo);
+
 function addNewTodo(e) {
   e.preventDefault();
 
   const todoTitle = todoInput.value.trim();
+
   if (todoTitle === '') {
     alert('Please enter your todo');
     return;
@@ -109,10 +95,8 @@ const createMyTodo = (todos) => {
   //-> add new todo to DOM
   todoList.innerHTML = result;
 
-  //-> reset input todo every time
+  //-> reset input todo every time after each entering
   todoInput.value = '';
-
-  todoForm.addEventListener('submit', addNewTodo);
 
   /*---------------> END <----------------*/
 
@@ -127,6 +111,8 @@ const createMyTodo = (todos) => {
   const editBtns = [...document.querySelectorAll('.todo__edit')];
   editBtns.forEach((btn) => btn.addEventListener('click', editTodo));
 };
+
+/*-> END <-*/
 
 /*--------- REMOVE ----------*/
 function removeTodo(e) {
@@ -227,3 +213,23 @@ selectOptions.addEventListener('change', (e) => {
 
   filterTodos();
 });
+
+/*-> END <-*/
+
+/*=========================$ localStorage $========================== */
+function getAllTodos() {
+  const savedTodo = JSON.parse(localStorage.getItem('todos')) || [];
+  return savedTodo;
+}
+
+function saveTodo(todo) {
+  const savedTodo = getAllTodos();
+  savedTodo.push(todo);
+
+  localStorage.setItem('todos', JSON.stringify(savedTodo));
+  return savedTodo;
+}
+
+function saveAllTodos(todos) {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
