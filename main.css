@@ -40,7 +40,7 @@ h4 {
   margin-bottom: 0.5rem;
 }
 
-input:not([type='radio']):not([type='checkbox']),
+input,
 button {
   appearance: none;
   border: none;
