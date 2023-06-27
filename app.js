@@ -21,16 +21,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
 });
 
 function getAllTodos() {
-  const ss = JSON.parse(localStorage.getItem('todos')) || [];
-  return ss;
+  const savedTodo = JSON.parse(localStorage.getItem('todos')) || [];
+  return savedTodo;
 }
 
 function saveTodo(todo) {
-  const ss = getAllTodos();
-  ss.push(todo);
+  const savedTodo = getAllTodos();
+  savedTodo.push(todo);
 
-  localStorage.setItem('todos', JSON.stringify(ss));
-  return ss;
+  localStorage.setItem('todos', JSON.stringify(savedTodo));
+  return savedTodo;
 }
 
 function saveAllTodos(todos) {

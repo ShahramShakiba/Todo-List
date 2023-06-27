@@ -56,7 +56,6 @@ button > i {
 /*======================$ HEADER $======================-*/
 .greeting .header {
   display: flex;
-  flex-direction: row;
   align-items: center;
   width: 13rem;
   font-size: 1.7rem;
@@ -65,15 +64,18 @@ button > i {
   padding-bottom: 5px;
 }
 
-.bubble-red {
+.bubble {
   width: 20px;
   height: 20px;
   justify-content: center;
-  border: 2px solid var(--primary);
   border-radius: 50%;
-  box-shadow: var(--bubble-red);
   margin-inline: 5px;
   transition: all 0.2s ease-in-out;
+}
+
+.bubble-red {
+  box-shadow: var(--bubble-red);
+  border: 2px solid var(--primary);
 }
 
 .bubble-red:hover {
@@ -82,14 +84,8 @@ button > i {
 }
 
 .bubble-blue {
-  width: 20px;
-  height: 20px;
-  justify-content: center;
   border: 2px solid var(--secondary);
-  border-radius: 50%;
   box-shadow: var(--bubble-blue);
-  margin-inline: 5px;
-  transition: all 0.2s ease-in-out;
 }
 
 .bubble-blue:hover {
@@ -104,7 +100,7 @@ button > i {
 
 .greeting .title #name {
   margin-left: 0.5rem;
-  flex: 1 1 0%;
+  flex: 1 1 0;
   color: var(--gray);
 }
 
@@ -115,11 +111,6 @@ button > i {
 }
 
 /*===================$ Create New TODO $===================-*/
-.input-container {
-  display: flex;
-  align-items: center;
-}
-
 .create-todo input[type='text'] {
   width: 30rem;
   background-color: #fff;
@@ -147,6 +138,11 @@ button > i {
 
 .create-todo input[type='submit']:hover {
   opacity: 0.7;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
 }
 
 .select {
