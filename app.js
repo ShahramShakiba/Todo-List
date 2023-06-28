@@ -67,7 +67,7 @@ const createMyTodo = (myTodo) => {
                <i class="ri-check-line"></i>
             </button>
 
-            <button class='todo__edit' 
+            <button class='todo__edit show-modal' 
             data-id="${todo.id}">
                <i class="ri-pencil-line"></i>
             </button>
@@ -77,6 +77,19 @@ const createMyTodo = (myTodo) => {
                <i class="ri-delete-bin-line"></i>
             </button>
           </div> 
+          
+          <div class="backdrop hidden"></div>
+
+          <div class="modal hidden" id="modal">
+            <div class="modal__header">
+              <h1>Todo list</h1>
+              <button class="close-modal">&times;</button>
+            </div>
+
+            <div class="modal__input">
+              <input type="text" class="edit-input" value="${todo.title}" />
+            </div>
+          </div>
       </div>
      </li>
    `;
@@ -106,11 +119,45 @@ const createMyTodo = (myTodo) => {
 
   const editBtns = [...document.querySelectorAll('.todo__edit')];
   editBtns.forEach((btn) => btn.addEventListener('click', editTodo));
+
+  const closeModalBtns = document.querySelectorAll('.close-modal');
+  const backDrop = document.querySelector('.backdrop');
+  const modal = document.querySelector('.modal');
+  const showModalBtn = [...document.querySelectorAll('.show-modal')];
+
+  const closeModal = () => {
+    backDrop.classList.add('hidden');
+    modal.classList.add('hidden');
+  };
+
+  const showModal = (e) => {
+    const todoId = e.target.dataset.id;
+    const input = document.querySelector('.edit-input');
+    input.value = getTodoTitleById(todoId);
+
+    backDrop.classList.remove('hidden');
+    modal.classList.remove('hidden');
+  };
+
+  showModalBtn.forEach((btn) => {
+    btn.addEventListener('click', showModal);
+  });
+
+  closeModalBtns.forEach((btn) => {
+    btn.addEventListener('click', closeModal);
+  });
+
+  backDrop.addEventListener('click', closeModal);
 };
 
 /*-> END <-*/
 
-/*--------------------- REMOVE ---------------------*/
+function getTodoTitleById(todoId) {
+  const todo = getAllTodo().find((todo) => todo.id === Number(todoId));
+  return todo ? todo.title : '';
+}
+
+/*----------------------- REMOVE -----------------------*/
 function removeTodo(e) {
   let myTodo = getAllTodo();
 
@@ -124,7 +171,7 @@ function removeTodo(e) {
   filterAllTodo();
 }
 
-/*-------------------- CHECK ----------------------*/
+/*---------------------- CHECK -------------------------*/
 function checkTodo(e) {
   const myTodo = getAllTodo();
 
@@ -140,39 +187,41 @@ function checkTodo(e) {
   filterAllTodo();
 }
 
-/*----------------- EDIT ----------------------*/
-function editTodo(e) {
-  const myTodo = getAllTodo();
+/*---------------------- EDIT --------------------------*/
+function editTodo() {
+  const todoId = Number(this.dataset.id);
 
-  const todoId = Number(e.target.dataset.id);
-
-  // finds the closest parent el of the el that triggered the event with a class of "todo" and from that el, it finds the first descendant el with a class of "todo__title"
-  const input = e.target.closest('.todo').querySelector('.todo__title');
+  const input = document.querySelector('.edit-input');
 
   input.contentEditable = true;
-
-  // select and ready to accept user input.
   input.focus();
-  const initialValue = input.innerText;
 
-  /* when the user leaves the input field -> create new todo of editing */
+  const initialValue = input.value;
+
+  // when the user leaves the input field -> create new todo of editing
   input.addEventListener('blur', () => {
     input.contentEditable = false;
 
-    const updatedValue = input.innerText.trim();
+    const updatedValue = input.value.trim();
 
     if (updatedValue === initialValue) return;
 
-    const myNewTodo = myTodo.map((todo) => {
-      if (todo.id === todoId) {
-        todo.title = updatedValue;
-      }
-      return todo;
-    });
-
-    saveAllMyTodo(myNewTodo);
+    updateTodoTitle(todoId, updatedValue);
     filterAllTodo();
   });
+}
+
+function updateTodoTitle(todoId, updatedValue) {
+  const myTodo = getAllTodo();
+
+  const myNewTodo = myTodo.map((todo) => {
+    if (todo.id === todoId) {
+      todo.title = updatedValue;
+    }
+    return todo;
+  });
+
+  saveAllMyTodo(myNewTodo);
 }
 
 /*-> END <-*/
