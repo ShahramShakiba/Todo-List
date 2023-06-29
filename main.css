@@ -27,6 +27,8 @@
 body {
   color: var(--dark);
   background: var(--light);
+  background-image: url(./assets/image/background.png);
+  object-fit: contain;
 }
 
 section {
@@ -181,7 +183,7 @@ button > i {
   align-items: center;
   background-color: #fff;
   margin-bottom: 0.7rem;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s linear;
 }
