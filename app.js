@@ -87,7 +87,7 @@ const createMyTodo = (myTodo) => {
             </div>
 
             <div class="modal__input">
-            <textarea  class="edit-input" value="${todo.title}" ></textarea>
+               <textarea class="edit-input" value="${todo.title}" ></textarea>
             
             </div>
           </div>

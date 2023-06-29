@@ -240,8 +240,6 @@ button > i {
   cursor: pointer;
 }
 
-
-
 .todo__remove {
   color: var(--danger);
   font-size: 1.2rem;
@@ -346,7 +344,7 @@ button > i {
 #modal .edit-input {
   width: 100%;
   max-width: 35rem;
-  height: 14rem;
+  height: 15rem;
   border: none;
   padding: 10px;
   font-size: 14px;
