@@ -121,10 +121,10 @@ const createMyTodo = (myTodo) => {
   const editBtns = [...document.querySelectorAll('.todo__edit')];
   editBtns.forEach((btn) => btn.addEventListener('click', editTodo));
 
-  const closeModalBtns = document.querySelectorAll('.close-modal');
-  const backDrop = document.querySelector('.backdrop');
-  const modal = document.querySelector('.modal');
-  const showModalBtn = [...document.querySelectorAll('.show-modal')];
+  const closeModalBtns = document.querySelectorAll('.close-modal'),
+    backDrop = document.querySelector('.backdrop'),
+    modal = document.querySelector('.modal'),
+    showModalBtn = [...document.querySelectorAll('.show-modal')];
 
   const closeModal = () => {
     backDrop.classList.add('hidden');
@@ -153,8 +153,10 @@ const createMyTodo = (myTodo) => {
 
 /*-> END <-*/
 
+/*--------------------- showModal ----------------------*/
 function getTodoContentById(todoId) {
   const todo = getAllTodo().find((todo) => todo.id === Number(todoId));
+  
   return todo ? todo.title : '';
 }
 
