@@ -87,7 +87,8 @@ const createMyTodo = (myTodo) => {
             </div>
 
             <div class="modal__input">
-              <input type="text" class="edit-input" value="${todo.title}" />
+            <textarea  class="edit-input" value="${todo.title}" ></textarea>
+            
             </div>
           </div>
       </div>
@@ -198,7 +199,7 @@ function editTodo() {
 
   const initialValue = input.value;
 
-  // when the user leaves the input field -> create new todo of editing
+  // when the user leaves the input field -> create new todo of editing 
   input.addEventListener('blur', () => {
     input.contentEditable = false;
 

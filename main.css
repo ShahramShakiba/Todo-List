@@ -24,6 +24,10 @@
   list-style: none;
 }
 
+html {
+  /* height: 100%; */
+}
+
 body {
   color: var(--dark);
   background: var(--light);
@@ -236,6 +240,8 @@ button > i {
   cursor: pointer;
 }
 
+
+
 .todo__remove {
   color: var(--danger);
   font-size: 1.2rem;
@@ -277,16 +283,16 @@ button > i {
   padding: 0.7rem;
 }
 
+/*=====================$ Modal $====================-*/
 .backdrop {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 10;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
   cursor: pointer;
 }
 
@@ -340,13 +346,13 @@ button > i {
 #modal .edit-input {
   width: 100%;
   max-width: 35rem;
-  height: 100%;
+  height: 14rem;
   border: none;
   padding: 10px;
   font-size: 14px;
-  white-space: nowrap;
-  overflow: scroll;
-  text-overflow:ellipsis;
+  resize: none;
+  border-radius: 1rem;
+  outline: none;
 }
 
 #modal .edit-input:focus {
@@ -354,11 +360,6 @@ button > i {
   padding: 10px;
 }
 
-#modal .edit-input[contenteditable='true']:empty::before {
-  content: attr(value);
-  color: gray;
-}
-
-#modal .edit-input[contenteditable='true'] {
-  white-space: nowrap;
+#modal .edit-input::-webkit-scrollbar {
+  display: none;
 }
