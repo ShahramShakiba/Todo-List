@@ -181,7 +181,7 @@ button > i {
   align-items: center;
   background-color: #fff;
   margin-bottom: 0.7rem;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s linear;
 }
@@ -189,7 +189,8 @@ button > i {
 .todo__title {
   width: 100%;
   line-height: 1.3rem;
-  padding: 0.2rem 0.5rem;
+  padding: 1rem 0.2rem;
+  border-right: 3px solid var(--secondary);
 }
 
 .todo__title:focus {
@@ -198,7 +199,6 @@ button > i {
   border: 2px solid var(--primary);
   border-radius: 1rem;
   padding: 0.5rem;
-
 }
 
 .todo__details {
@@ -208,7 +208,6 @@ button > i {
   justify-content: space-between;
   align-items: center;
   padding: 5px 45px;
-  border-left: 3px solid var(--secondary);
 }
 
 .todo__details .details__button {
