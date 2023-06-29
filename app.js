@@ -22,9 +22,9 @@ todoForm.addEventListener('submit', addNewTodo);
 function addNewTodo(e) {
   e.preventDefault();
 
-  const todoTitle = todoInput.value.trim();
+  const todoContent = todoInput.value.trim();
 
-  if (todoTitle === '') {
+  if (todoContent === '') {
     alert('Please enter your todo');
     return;
   }
@@ -33,7 +33,7 @@ function addNewTodo(e) {
   const newTodo = {
     id: Date.now(),
     createdAt: new Date().toISOString(),
-    title: todoTitle,
+    title: todoContent,
     isCompleted: false,
   };
 
@@ -134,7 +134,7 @@ const createMyTodo = (myTodo) => {
   const showModal = (e) => {
     const todoId = e.target.dataset.id;
     const input = document.querySelector('.edit-input');
-    input.value = getTodoTitleById(todoId);
+    input.value = getTodoContentById(todoId);
 
     backDrop.classList.remove('hidden');
     modal.classList.remove('hidden');
@@ -153,7 +153,7 @@ const createMyTodo = (myTodo) => {
 
 /*-> END <-*/
 
-function getTodoTitleById(todoId) {
+function getTodoContentById(todoId) {
   const todo = getAllTodo().find((todo) => todo.id === Number(todoId));
   return todo ? todo.title : '';
 }
@@ -199,7 +199,7 @@ function editTodo() {
 
   const initialValue = input.value;
 
-  // when the user leaves the input field -> create new todo of editing 
+  // when the user leaves the input field -> create new todo of editing
   input.addEventListener('blur', () => {
     input.contentEditable = false;
 
@@ -207,12 +207,12 @@ function editTodo() {
 
     if (updatedValue === initialValue) return;
 
-    updateTodoTitle(todoId, updatedValue);
+    updateTodoContent(todoId, updatedValue);
     filterAllTodo();
   });
 }
 
-function updateTodoTitle(todoId, updatedValue) {
+function updateTodoContent(todoId, updatedValue) {
   const myTodo = getAllTodo();
 
   const myNewTodo = myTodo.map((todo) => {

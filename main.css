@@ -201,6 +201,8 @@ button > i {
   outline: none;
   border: 2px solid var(--primary);
   border-radius: 1rem;
+  padding: 0.5rem;
+
 }
 
 .todo__details {
