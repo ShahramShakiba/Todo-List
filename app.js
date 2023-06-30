@@ -156,7 +156,7 @@ const createMyTodo = (myTodo) => {
 /*--------------------- showModal ----------------------*/
 function getTodoContentById(todoId) {
   const todo = getAllTodo().find((todo) => todo.id === Number(todoId));
-  
+
   return todo ? todo.title : '';
 }
 
@@ -280,10 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
   createMyTodo(allTodo);
 });
 
-function saveAllMyTodo(myTodo) {
-  localStorage.setItem('myTodo', JSON.stringify(myTodo));
-}
-
 function getAllTodo() {
   return JSON.parse(localStorage.getItem('myTodo')) || [];
 }
@@ -295,4 +291,8 @@ function saveTodo(todo) {
   localStorage.setItem('myTodo', JSON.stringify(savedTodo));
 
   return savedTodo;
+}
+
+function saveAllMyTodo(myTodo) {
+  localStorage.setItem('myTodo', JSON.stringify(myTodo));
 }
