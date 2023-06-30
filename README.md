@@ -15,7 +15,9 @@ A to-do list helps you keep track of all your tasks in one place, making it easi
 When you have a clear plan of what needs to be done, you can avoid feeling overwhelmed or stressed about the amount of work you have to do.
 
 ### Video
-https://github.com/ShahramShakiba/todoList/assets/110089830/e302d8bc-d0af-4c89-a66f-0ef00cba8b9d
+https://github.com/ShahramShakiba/todoList/assets/110089830/1a39b1b3-6ebc-4a8c-9ec7-87c0bfb6f568
+
+
 
 ## Try it live :
 https://shahramshakiba.github.io/todoList/
