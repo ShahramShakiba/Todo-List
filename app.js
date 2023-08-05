@@ -5,11 +5,8 @@ let alertShow = false;
 setInterval(() => {
   document.title = alertShow ? 'Welcome 😍' : 'Follow for more! ✌';
 
-  //-> title switch alternatively between the two values
   alertShow = !alertShow;
 }, 1000);
-
-/*-> END <-*/
 
 /*============👇 Load Content On DOM 👇==============*/
 
@@ -17,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //-> get all todos from localStorage
   const allTodo = getAllTodo();
 
-  //-> create todo
+  //-> create todo on DOM
   createMyTodo(allTodo);
 });
 
@@ -49,11 +46,9 @@ function addNewTodo(e) {
 
   saveTodo(newTodo);
 
-  /*-> to avoid that when we are in "completed" and if a new todo is added, this new todo is not shown in completed */
+  /*-> to avoid when we're in "completed" option and if a new todo is added, this new todo is not shown in completed */
   filterAllTodo();
 }
-
-/*-------> END <-------*/
 
 /*=============👇 Create TODO Template 👇==============*/
 
@@ -114,15 +109,7 @@ const createMyTodo = (myTodo) => {
   //-> reset input todo every time after each entering
   todoInput.value = '';
 
-  /*---> END <----*/
-
-  /*------------$ Get REMOVE, CHECK & EDIT TODO Btns $------------- */
-
-  //-> since our buttons are here -> to access them
-
-  //-> querySelectorAll : returns a NodeList, and the spread operator can be used to turn it into a regular array
-
-  /*-> Spread OP : create a new array that contains all the elements that match the selector */
+  /*==========$ Get REMOVE, CHECK & EDIT TODO Btns $==========*/
 
   const removeBtns = [...document.querySelectorAll('.todo__remove')];
   removeBtns.forEach((btn) => btn.addEventListener('click', removeTodo));
@@ -133,6 +120,7 @@ const createMyTodo = (myTodo) => {
   const editBtns = [...document.querySelectorAll('.todo__edit')];
   editBtns.forEach((btn) => btn.addEventListener('click', editTodo));
 
+  /*=============== MODAL =================*/
   const closeModalBtns = document.querySelectorAll('.close-modal'),
     backDrop = document.querySelector('.backdrop'),
     modal = document.querySelector('.modal'),
@@ -145,6 +133,8 @@ const createMyTodo = (myTodo) => {
 
   const showModal = (e) => {
     const todoId = e.target.dataset.id;
+
+    //Get input of Modal
     const input = document.querySelector('.edit-input');
     input.value = getTodoContentById(todoId);
 
@@ -163,11 +153,9 @@ const createMyTodo = (myTodo) => {
   backDrop.addEventListener('click', closeModal);
 };
 
-/*-> END <-*/
-
 /*--------------------- showModal ----------------------*/
 function getTodoContentById(todoId) {
-  const todo = getAllTodo().find((todo) => todo.id === Number(todoId));
+  const todo = getAllTodo().find((todo) => todo.id === parseInt(todoId));
 
   return todo ? todo.title : '';
 }
@@ -178,9 +166,9 @@ function removeTodo(e) {
   let myTodo = getAllTodo();
 
   const todoId = Number(e.target.dataset.id);
+
   myTodo = myTodo.filter((todo) => todo.id !== todoId);
 
-  // Saves the updated "myTodo" array to localStorage
   saveAllMyTodo(myTodo);
 
   /*-> to prevent that when a todo is deleted, the rest of the todos are not shown in the "uncompleted" section */
@@ -193,9 +181,9 @@ function checkTodo(e) {
   const myTodo = getAllTodo();
 
   const todoId = Number(e.target.dataset.id);
+
   const todo = myTodo.find((todo) => todo.id === todoId);
 
-  // causing it to change its status between "true" and "false".
   todo.isCompleted = !todo.isCompleted;
 
   saveAllMyTodo(myTodo);
@@ -216,7 +204,7 @@ function editTodo() {
 
   const initialValue = input.value;
 
-  // when the user leaves the input field -> create new todo of editing
+  //when the user leaves the input field -> create new todo of editing
   input.addEventListener('blur', () => {
     input.contentEditable = false;
 
@@ -242,8 +230,6 @@ function updateTodoContent(todoId, updatedValue) {
   saveAllMyTodo(myNewTodo);
 }
 
-/*-> END <-*/
-
 /*================👇 Filter Options 👇===================*/
 
 const filterOptions = document.querySelector('.filter-todo');
@@ -251,7 +237,7 @@ const filterOptions = document.querySelector('.filter-todo');
 let filterValue = 'all';
 
 filterOptions.addEventListener('change', (e) => {
-  // to get the option select that the user chooses
+  //to get the option select that the user chooses
   filterValue = e.target.value;
 
   filterAllTodo();
@@ -283,9 +269,11 @@ function filterAllTodo() {
   }
 }
 
-/*-> END <-*/
-
 /*==================👇 localStorage 👇====================*/
+
+function saveAllMyTodo(myTodo) {
+  localStorage.setItem('myTodo', JSON.stringify(myTodo));
+}
 
 function getAllTodo() {
   return JSON.parse(localStorage.getItem('myTodo')) || [];
@@ -298,8 +286,4 @@ function saveTodo(todo) {
   localStorage.setItem('myTodo', JSON.stringify(savedTodo));
 
   return savedTodo;
-}
-
-function saveAllMyTodo(myTodo) {
-  localStorage.setItem('myTodo', JSON.stringify(myTodo));
 }
