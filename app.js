@@ -1,4 +1,4 @@
-/*===================== Document Title ===================== */
+/*================👇 Document Title 👇================= */
 
 let alertShow = false;
 
@@ -11,7 +11,17 @@ setInterval(() => {
 
 /*-> END <-*/
 
-/*===================$ Create NEW TODO $=================== */
+/*============👇 Load Content On DOM 👇==============*/
+
+document.addEventListener('DOMContentLoaded', () => {
+  //-> get all todos from localStorage
+  const allTodo = getAllTodo();
+
+  //-> create todo
+  createMyTodo(allTodo);
+});
+
+/*=============👇 Create NEW TODO 👇================*/
 
 const todoInput = document.querySelector('.content'),
   todoForm = document.querySelector('.todo-form'),
@@ -44,6 +54,8 @@ function addNewTodo(e) {
 }
 
 /*-------> END <-------*/
+
+/*=============👇 Create TODO Template 👇==============*/
 
 const createMyTodo = (myTodo) => {
   let result = '';
@@ -160,7 +172,8 @@ function getTodoContentById(todoId) {
   return todo ? todo.title : '';
 }
 
-/*----------------------- REMOVE -----------------------*/
+/*==================👇 REMOVE 👇=================*/
+
 function removeTodo(e) {
   let myTodo = getAllTodo();
 
@@ -174,7 +187,8 @@ function removeTodo(e) {
   filterAllTodo();
 }
 
-/*---------------------- CHECK -------------------------*/
+/*==================👇 CHECK 👇=================*/
+
 function checkTodo(e) {
   const myTodo = getAllTodo();
 
@@ -190,7 +204,8 @@ function checkTodo(e) {
   filterAllTodo();
 }
 
-/*---------------------- EDIT --------------------------*/
+/*=================👇 EDIT 👇===================*/
+
 function editTodo() {
   const todoId = Number(this.dataset.id);
 
@@ -229,7 +244,7 @@ function updateTodoContent(todoId, updatedValue) {
 
 /*-> END <-*/
 
-/*===================$ Filter Options $======================= */
+/*================👇 Filter Options 👇===================*/
 
 const filterOptions = document.querySelector('.filter-todo');
 
@@ -270,15 +285,7 @@ function filterAllTodo() {
 
 /*-> END <-*/
 
-/*=========================$ localStorage $========================== */
-
-document.addEventListener('DOMContentLoaded', () => {
-  //-> get all todos from localStorage
-  const allTodo = getAllTodo();
-
-  //-> create todo
-  createMyTodo(allTodo);
-});
+/*==================👇 localStorage 👇====================*/
 
 function getAllTodo() {
   return JSON.parse(localStorage.getItem('myTodo')) || [];
