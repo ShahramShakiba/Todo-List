@@ -112,12 +112,13 @@ const createMyTodo = (myTodo) => {
   /*==========$ Get REMOVE, CHECK & EDIT TODO Btns $==========*/
 
   const removeBtns = [...document.querySelectorAll('.todo__remove')];
+  const checkBtns = [...document.querySelectorAll('.todo__check')];
+  const editBtns = [...document.querySelectorAll('.todo__edit')];
+  
   removeBtns.forEach((btn) => btn.addEventListener('click', removeTodo));
 
-  const checkBtns = [...document.querySelectorAll('.todo__check')];
   checkBtns.forEach((btn) => btn.addEventListener('click', checkTodo));
 
-  const editBtns = [...document.querySelectorAll('.todo__edit')];
   editBtns.forEach((btn) => btn.addEventListener('click', editTodo));
 
   /*=============== MODAL =================*/
@@ -132,11 +133,15 @@ const createMyTodo = (myTodo) => {
   };
 
   const showModal = (e) => {
+    let myTodo = getAllTodo();
+
     const todoId = e.target.dataset.id;
 
-    //Get input of Modal
+    myTodo = myTodo.find((todo) => todo.id === parseInt(todoId));
+    const todo = myTodo ? myTodo.title : '';
+
     const input = document.querySelector('.edit-input');
-    input.value = getTodoContentById(todoId);
+    input.value = todo;
 
     backDrop.classList.remove('hidden');
     modal.classList.remove('hidden');
@@ -152,13 +157,6 @@ const createMyTodo = (myTodo) => {
 
   backDrop.addEventListener('click', closeModal);
 };
-
-/*--------------------- showModal ----------------------*/
-function getTodoContentById(todoId) {
-  const todo = getAllTodo().find((todo) => todo.id === parseInt(todoId));
-
-  return todo ? todo.title : '';
-}
 
 /*==================👇 REMOVE 👇=================*/
 
