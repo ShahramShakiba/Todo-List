@@ -21,7 +21,8 @@ https://github.com/ShahramShakiba/todoList/assets/110089830/1a39b1b3-6ebc-4a8c-9
 https://shahramshakiba.github.io/todoList/
 
  ## Stay in touch :
- • ` Author ` - <a href="https://t.me/ShahramDev">Shahram Shakiba</a> <br/>
+• ` Telegram ` - <a href="https://t.me/ShahramDev">Shahram Shakiba</a> <br/>
+ • ` WhatsApp ` - <a href="https://wa.me/message/LM2IMM3ABZ7ZM1">Shahram Shakiba</a> <br/>
  • ` Linkedin ` - https://www.linkedin.com/in/shahram-shakiba-a19223248/ <br/>
  • ` Instagram ` - https://instagram.com/shahram.shakibaa?igshid=MzNlNGNkZWQ4Mg== <br/>
- • `Twitter` - https://twitter.com/DevZEEMO?t=NrBFV-j1adqZ9lEaHlNp-g&s=09
+ • ` Twitter ` - https://twitter.com/DevZEEMO?t=NrBFV-j1adqZ9lEaHlNp-g&s=09
