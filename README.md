@@ -1,4 +1,4 @@
-# Descriptio
+# Description
 **_Todo List_** :<br/>
   > This is a mini-project of building a Todo-List to practice `HTML`, `CSS` and `JavaScript` using if else statment - switch case - template literals - forEach - filter - find - map - DOM eventTarget - localStorage .  <br/>
 
