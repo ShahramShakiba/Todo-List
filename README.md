@@ -1,4 +1,4 @@
-# <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/></a> Todo List 
+# <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/></a> &nbsp; Todo List 
 **_Description_** :<br/>
   > This is a mini-project of building a Todo-List to practice `HTML`, `CSS` and `JavaScript` using if else statment - switch case - template literals - forEach - filter - find - map - DOM eventTarget - localStorage .  <br/>
 
