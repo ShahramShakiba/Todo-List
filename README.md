@@ -14,13 +14,12 @@ By prioritizing tasks and setting deadlines, you can manage your time more effec
 **3. Better organization :**<br/>
 A to-do list helps you keep track of all your tasks in one place, making it easier to stay organized and avoid forgetting important tasks.<br/><br/>
 **4. Reduced stress :**<br/>
-When you have a clear plan of what needs to be done, you can avoid feeling overwhelmed or stressed about the amount of work you have to do.
+When you have a clear plan of what needs to be done, you can avoid feeling overwhelmed or stressed about the amount of work you have to do. <br/>
 
 ### Video
 https://github.com/ShahramShakiba/todoList/assets/110089830/1a39b1b3-6ebc-4a8c-9ec7-87c0bfb6f568
 
-## Try it live :
-https://shahramshakiba.github.io/todoList/
+<br/>
 
  ## Stay in touch :
  • ` Telegram ` - <a href="https://t.me/ShahramDev">Shahram Shakiba</a> <br/>
