@@ -6,7 +6,7 @@
 
 
 
-## A few benefits of Todo-list :<br/>
+## A few benefits of Todo-list :
 **1. Increased productivity :**<br/>
 A to-do list helps you stay organized and focused on your tasks, which can increase your productivity.<br/><br/>
 **2. Improved time management :**<br/>
