@@ -14,6 +14,9 @@ body {
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(135deg, #4ab1ff, #2d5cfe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ::selection {
@@ -117,6 +120,149 @@ li {
   margin-top: 20px;
   margin-right: 5px;
   padding: 0 20px 10px 25px;
+}
+
+.task-box.overflow {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.task-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-box::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+
+.task-box::-webkit-scrollbar-thumb {
+  background: #b2cfff;
+  border-radius: 25px;
+}
+
+.task-box .task {
+  list-style: none;
+  font-size: 17px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-box .task:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.task-box .task label {
+  display: flex;
+  align-items: flex-start;
+}
+
+.task label input {
+  margin-top: 7px;
+  accent-color: #3c87ff;
+}
+
+.task label p {
+  user-select: none;
+  margin-left: 12px;
+  word-wrap: break-word;
+}
+
+.task label p.checked {
+  text-decoration: line-through;
+}
+
+.task-box .settings {
+  position: relative;
+}
+
+.settings :where(i, li) {
+  cursor: pointer;
+}
+
+.settings .task-menu {
+  position: absolute;
+  right: -5px;
+  bottom: -65px;
+  background: #fff;
+  padding: 5px 0;
+  border-radius: 4px;
+  transform: scale(0);
+  transform-origin: top right;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.task-box .task:last-child .task-menu {
+  bottom: 0;
+  transform-origin: bottom right;
+}
+
+.task-box .task:first-child .task-menu {
+  bottom: -65px;
+  transform-origin: top right;
+}
+
+.task-menu.show {
+  transform: scale(1);
+}
+
+.task-menu li {
+  height: 25px;
+  font-size: 16px;
+  margin-bottom: 2px;
+  padding: 17px 15px;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+
+.task-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.settings li:hover {
+  background: #f5f5f5;
+}
+
+.settings li i {
+  padding-right: 8px;
+}
+
+@media (max-width: 400px) {
+  body {
+    padding: 0 10px;
+  }
+
+  .wrapper {
+    padding: 20px 0;
+  }
+
+  .filters span {
+    margin: 0 5px;
+  }
+
+  .task-input {
+    padding: 0 20px;
+  }
+
+  .controls {
+    padding: 18px 20px;
+  }
+
+  .task-box {
+    margin-top: 20px;
+    margin-right: 5px;
+    padding: 0 15px 10px 20px;
+  }
+
+  .task label input {
+    margin-top: 4px;
+  }
 }
 
 /* ==================================== */
