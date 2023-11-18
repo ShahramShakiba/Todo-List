@@ -4,7 +4,7 @@
   
   > In this project, the focus is on adding, editing and deleting todos. <br/>
 
-- A  _Todo-list_ helps you organize tasks and stay on top of your deadlines. You can use it to manage everything from grocery lists to work-related tasks and more. <br/><br/>
+- A  _Todo-list_ helps you organize tasks and stay on top of your deadlines. You can use it to manage everything from grocery lists to work-related tasks and more. <br/>
 
  
 ### Some benefits of using a todo-list app 
@@ -15,6 +15,8 @@
 **Provides a sense of accomplishment**<br/>
 
 🎬
+
+https://github.com/ShahramShakiba/Todo-List/assets/110089830/16092204-d66a-45fd-b460-c9331027badd
 
 
 <br/>
