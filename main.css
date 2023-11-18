@@ -21,10 +21,10 @@ body{
   position: absolute;
   top: 15px;
   left: 15px;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .logo img {
-  width: 11rem;
-  height: 6rem;
+  width: 8rem;
+  height: 2.5rem;
 }
 
