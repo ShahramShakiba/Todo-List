@@ -25,9 +25,9 @@ const showTodo = (filter) => {
 
   if (todos) {
     todos.forEach((todo, id) => {
-      let completed = (todo.status = 'completed' ? 'checked' : '');
+      let completed = (todo.status === 'completed' ? 'checked' : '');
 
-      if (filter == todo.status || filter == 'all') {
+      if (filter === todo.status || filter === 'all') {
         todoList += `
         <li class="task">
           <label for="${id}">
@@ -96,3 +96,16 @@ taskInput.addEventListener('keyup', (e) => {
     showTodo(document.querySelector('span.active').id);
   }
 });
+
+//==>> Update Status
+function updateStatus(selectedTask) {
+  let taskName = selectedTask.parentElement.lastElementChild;
+  if (selectedTask.checked) {
+    taskName.classList.add('checked');
+    todos[selectedTask.id].status = 'completed';
+  } else {
+    taskName.classList.remove('checked');
+    todos[selectedTask.id].status = 'pending';
+  }
+  localStorage.setItem('todo-list', JSON.stringify(todos));
+}
