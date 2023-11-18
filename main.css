@@ -9,14 +9,118 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #4AB1FF, #2D5CFE);
+  background: linear-gradient(135deg, #4ab1ff, #2d5cfe);
+}
+
+::selection {
+  color: #fff;
+  background: #3c87ff;
 }
 
 /*================ MAIN ================*/
+.wrapper {
+  max-width: 405px;
+  background: #fff;
+  padding: 28px 0 30px;
+  margin: 137px auto;
+  border-radius: 7px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.task-input {
+  height: 52px;
+  padding-inline: 25px;
+  position: relative;
+}
+
+.task-input img {
+  position: absolute;
+  top: 50%;
+  transform: translate(17px, -50%);
+}
+
+.task-input input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 0 20px 0 53px;
+  border: 1px solid #999;
+}
+
+.task-input input:is(:focus, .active) {
+  padding-left: 52px;
+  border: 2px solid #3c87ff;
+}
+
+.task-input input::placeholder {
+  color: #bfbfbf;
+}
+
+.controls,
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls {
+  padding: 18px 25px;
+  border-bottom: 1px solid #ccc;
+}
+
+.filters span {
+  margin: 0 8px;
+  font-size: 17px;
+  color: #444444;
+  cursor: pointer;
+}
+
+.filters span:first-child {
+  margin-left: 0;
+}
+
+.filters span.active {
+  color: #3c87ff;
+}
+
+.controls .clear-btn {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  transition: transform 0.25s ease;
+  background: linear-gradient(135deg, #1798fb 0%, #2d5cfe 100%);
+  letter-spacing: 0.3px;
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.clear-btn.active {
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+.clear-btn:active {
+  transform: scale(0.93);
+}
+
+.task-box {
+  margin-top: 20px;
+  margin-right: 5px;
+  padding: 0 20px 10px 25px;
+}
+
+/* ==================================== */
+
 .logo {
   position: absolute;
   top: 15px;
@@ -27,4 +131,3 @@ body{
   width: 8rem;
   height: 2.5rem;
 }
-
