@@ -1,14 +1,15 @@
-const taskInput = document.querySelector('.task-input input'),
+const todoInput = document.querySelector('.task-input input'),
   filters = document.querySelectorAll('.filters span'),
   clearAll = document.querySelector('.clear-btn'),
-  taskBox = document.querySelector('.task-box');
+  taskBox = document.querySelector('.task-box'),
+  addTodoBtn = document.querySelector('.add-btn');
 
 let editId;
-isEditTask = false;
+isEditTodo = false;
 
 todos = JSON.parse(localStorage.getItem('todo-list'));
 
-//==>> Filter options functionality
+//===========>> Filter options functionality
 filters.forEach((btn) => {
   btn.addEventListener('click', () => {
     document.querySelector('span.active').classList.remove('active');
@@ -19,7 +20,7 @@ filters.forEach((btn) => {
   });
 });
 
-//=> Show Todo List
+//============> Show Todo List
 const showTodo = (filter) => {
   let todoList = '';
 
@@ -39,15 +40,15 @@ const showTodo = (filter) => {
           </label>
 
           <div class="settings">
-            <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
+            <i onclick="showMenu(this)" class="ellipsis uil uil-ellipsis-h"></i>
             
             <ul class="task-menu">
-              <li onclick='editTask(${id}, "${todo.name}")'>
+              <li onclick='editTodo(${id}, "${todo.name}")'>
                 <i class="uil uil-pen"></i>
                 Edit
               </li>
 
-              <li onclick='deleteTask(${id}, "${filter}")'>
+              <li onclick='deleteTodo(${id}, "${filter}")'>
                 <i class="uil uil-trash"></i>
                 Delete
               </li>
@@ -59,7 +60,7 @@ const showTodo = (filter) => {
     });
   }
 
-  taskBox.innerHTML = todoList || `<span>You don't have any task here</span>`;
+  taskBox.innerHTML = todoList || `<span>You don't have any todo here!</span>`;
 
   let checkTask = taskBox.querySelectorAll('.task');
 
@@ -74,31 +75,39 @@ const showTodo = (filter) => {
 
 showTodo('all');
 
-//==>> Add Todo to task-box
-taskInput.addEventListener('keyup', (e) => {
-  let userTask = taskInput.value.trim();
+//==============>> Add Todo to task-box
+const addTodo = () => {
+  let userTodo = todoInput.value.trim();
 
-  if (e.key === 'Enter' && userTask) {
-    if (!isEditTask) {
+  if (userTodo) {
+    if (!isEditTodo) {
       todos = !todos ? [] : todos;
 
-      let taskInfo = { name: userTask, status: 'pending' };
+      let todoInfo = { name: userTodo, status: 'pending' };
 
-      todos.push(taskInfo);
+      todos.push(todoInfo);
     } else {
-      isEditTask = false;
-      todos[editId].name = userTask;
+      isEditTodo = false;
+      todos[editId].name = userTodo;
     }
 
-    taskInput.value = '';
+    todoInput.value = '';
     localStorage.setItem('todo-list', JSON.stringify(todos));
 
     showTodo(document.querySelector('span.active').id);
   }
+};
+
+addTodoBtn.addEventListener('click', addTodo);
+
+todoInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    addTodo();
+  }
 });
 
-//==>> Show Menu: edit, delete
-function showMenu(selectedTask) {
+//============>> Show Menu: edit, delete
+const showMenu = (selectedTask) => {
   let menuDiv = selectedTask.parentElement.lastElementChild;
 
   menuDiv.classList.add('show');
@@ -108,11 +117,12 @@ function showMenu(selectedTask) {
       menuDiv.classList.remove('show');
     }
   });
-}
+};
 
-//==>> Update Status
-function updateStatus(selectedTask) {
+//============>> Update Status
+const updateStatus = (selectedTask) => {
   let taskName = selectedTask.parentElement.lastElementChild;
+
   if (selectedTask.checked) {
     taskName.classList.add('checked');
     todos[selectedTask.id].status = 'completed';
@@ -120,5 +130,38 @@ function updateStatus(selectedTask) {
     taskName.classList.remove('checked');
     todos[selectedTask.id].status = 'pending';
   }
+
   localStorage.setItem('todo-list', JSON.stringify(todos));
-}
+};
+
+//===========>> Edit todo
+const editTodo = (todoId, textName) => {
+  editId = todoId;
+  isEditTodo = true;
+
+  todoInput.focus();
+  todoInput.value = textName;
+  todoInput.classList.add('active');
+};
+
+//===========>> delete todo
+const deleteTask = (deleteId, filter) => {
+  isEditTodo = false;
+
+  todos.splice(deleteId, 1);
+
+  localStorage.setItem('todo-list', JSON.stringify(todos));
+
+  showTodo(filter);
+};
+
+//===========>> Clear all todo
+clearAll.addEventListener('click', () => {
+  isEditTask = false;
+
+  todos.splice(0, todos.length);
+
+  localStorage.setItem('todo-list', JSON.stringify(todos));
+
+  showTodo();
+});

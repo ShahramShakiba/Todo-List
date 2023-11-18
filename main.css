@@ -26,7 +26,8 @@ body {
 
 /*================ MAIN ================*/
 .wrapper {
-  max-width: 405px;
+  max-width: 505px;
+  width: 100%;
   background: #fff;
   padding: 28px 0 30px;
   margin: 137px auto;
@@ -52,8 +53,9 @@ body {
   outline: none;
   font-size: 18px;
   border-radius: 5px;
-  padding: 0 20px 0 53px;
+  padding: 0 60px 0 53px;
   border: 1px solid #999;
+  overflow: hidden;
 }
 
 .task-input input:is(:focus, .active) {
@@ -63,6 +65,21 @@ body {
 
 .task-input input::placeholder {
   color: #bfbfbf;
+}
+
+.task-input .add-btn {
+  position: absolute;
+  top: 50%;
+  right: 42px;
+  transform: translate(17px, -50%);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background: linear-gradient(135deg, #1798fb 0%, #2d5cfe 100%);
+  height: 100%;
+  padding-inline: 28px;
+  color: #fff;
 }
 
 .controls,
@@ -178,6 +195,10 @@ li {
 
 .task-box .settings {
   position: relative;
+}
+
+.settings .ellipsis {
+  font-size: 22px;
 }
 
 .settings :where(i, li) {
