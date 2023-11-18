@@ -25,7 +25,7 @@ const showTodo = (filter) => {
 
   if (todos) {
     todos.forEach((todo, id) => {
-      let completed = (todo.status === 'completed' ? 'checked' : '');
+      let completed = todo.status === 'completed' ? 'checked' : '';
 
       if (filter === todo.status || filter === 'all') {
         todoList += `
@@ -96,6 +96,19 @@ taskInput.addEventListener('keyup', (e) => {
     showTodo(document.querySelector('span.active').id);
   }
 });
+
+//==>> Show Menu: edit, delete
+function showMenu(selectedTask) {
+  let menuDiv = selectedTask.parentElement.lastElementChild;
+
+  menuDiv.classList.add('show');
+
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'I' || e.target !== selectedTask) {
+      menuDiv.classList.remove('show');
+    }
+  });
+}
 
 //==>> Update Status
 function updateStatus(selectedTask) {
