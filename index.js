@@ -4,25 +4,25 @@ const todoInput = document.querySelector('.todo-input input'),
   todoBox = document.querySelector('.todo-box'),
   addTodoBtn = document.querySelector('.add-btn');
 
-//getting the id of the todo-item being edited
+//getting the id of the todo being edited to prevent making new todo after editing
 let editId;
-isEditTodo = false;
+let isEditTodo = false;
 
 //getting todo-items, retrieved from the localStorage
 todos = JSON.parse(localStorage.getItem('todo-list'));
 
-//=============> 02. Show Todo List
+//=============> Show Todo List ==========
 const showTodo = (filter) => {
   let todoList = '';
 
   //if todos exists
-  if (todos) {
-    todos.forEach((todo, id) => {
-      //if todo status is completed, set the the isCompleted to checked(style)
-      let isCompleted = todo.status === 'completed' ? 'checked' : '';
 
-      if (filter === todo.status || filter === 'all') {
-        todoList += `
+  todos.forEach((todo, id) => {
+    //if todo status is completed, set the the isCompleted to checked(style)
+    let isCompleted = todo.status === 'completed' ? 'checked' : '';
+
+    if (filter === todo.status || filter === 'all') {
+      todoList += `
         <li class="task">
           <label for="${id}">
             <input onclick="updateStatus(this)" type="checkbox" id="${id}" 
@@ -51,16 +51,15 @@ const showTodo = (filter) => {
           </div>
         </li>
         `;
-      }
-    });
-  }
+    }
+  });
 
   //show todo in todo-box
   todoBox.innerHTML = todoList || `<span>You don't have any todo here!</span>`;
 
   let checkTodo = todoBox.querySelectorAll('.task');
 
-  //checks if there are any todos in the todoBox
+  //if there is any todo, clearAll btn will activated
   !checkTodo.length
     ? clearAll.classList.remove('active')
     : clearAll.classList.add('active');
@@ -74,16 +73,17 @@ const showTodo = (filter) => {
 //display all todo
 showTodo('all');
 
-//===========>> 01. Add Todo to task-box
+//============>> Add Todo to task-box ==========
 const addTodo = () => {
   let userTodo = todoInput.value.trim();
 
   //checks if userTodo is not an empty string
   if (userTodo) {
-    //If it's not being edited, creates a new todo
+    //If isEditTodo isn't true, creates a new todo
     if (!isEditTodo) {
       todos = !todos ? [] : todos;
 
+      //create new todo
       let todoInfo = { name: userTodo, status: 'pending' };
 
       todos.push(todoInfo);
@@ -100,7 +100,7 @@ const addTodo = () => {
     localStorage.setItem('todo-list', JSON.stringify(todos));
 
     //display the updated todo list
-    showTodo(document.querySelector('span.active').id);
+    showTodo('all');
   }
 };
 
@@ -113,7 +113,7 @@ todoInput.addEventListener('keypress', (e) => {
   }
 });
 
-//===========>> 03. Filter options functionality
+//=============>> Filter options ==========
 filters.forEach((btn) => {
   btn.addEventListener('click', () => {
     document.querySelector('span.active').classList.remove('active');
@@ -124,7 +124,7 @@ filters.forEach((btn) => {
   });
 });
 
-//============>> 04. Update Status
+//=============>> Update Status ============
 const updateStatus = (selectedTodo) => {
   // parentElement = label | lastElementChild = tag p(todo-name)
   let todoName = selectedTodo.parentElement.lastElementChild;
@@ -132,7 +132,8 @@ const updateStatus = (selectedTodo) => {
   if (selectedTodo.checked) {
     todoName.classList.add('checked');
 
-    //update the status from "pending" to "completed"
+    /* todos are an "array" so we need to get the "id of selected-todo"
+       then update the status from "pending" to "completed" */
     todos[selectedTodo.id].status = 'completed';
   } else {
     todoName.classList.remove('checked');
@@ -143,7 +144,7 @@ const updateStatus = (selectedTodo) => {
   localStorage.setItem('todo-list', JSON.stringify(todos));
 };
 
-//============>> 05. Show Menu: edit, delete
+//============>> Show Menu: edit, delete ==========
 const showMenu = (selectedTodo) => {
   // parentElement = li | lastElementChild = todo menu div
   let menuDiv = selectedTodo.parentElement.lastElementChild;
@@ -159,7 +160,7 @@ const showMenu = (selectedTodo) => {
   });
 };
 
-//===========>> 06. delete todo
+//============>> delete todo ===========
 const deleteTodo = (deleteId, filter) => {
   isEditTodo = false;
 
@@ -171,7 +172,7 @@ const deleteTodo = (deleteId, filter) => {
   showTodo(filter);
 };
 
-//===========>> 07. Edit todo
+//============>> Edit todo ===========
 const editTodo = (todoId, todoName) => {
   editId = todoId;
   isEditTodo = true;
@@ -181,7 +182,7 @@ const editTodo = (todoId, todoName) => {
   todoInput.classList.add('active');
 };
 
-//===========>> 08. Clear all todo
+//===========>> Clear all todo ===========
 clearAll.addEventListener('click', () => {
   isEditTask = false;
 
