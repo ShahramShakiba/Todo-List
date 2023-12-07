@@ -14,14 +14,14 @@
 **Improves memory**<br/>
 **Reduces stress**<br/>
 **Allows for more personal time**<br/>
-**Provides a sense of accomplishment**<br/>
+**Provides a sense of accomplishment**<br/><br/>
 
 
 <!----------------------------------------- try it live ---------------------------------------->
  ### Give It A Go In Real-Time and Give Me A Star <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Symbols/Dizzy.webp" alt="Dizzy" width="35" />
  <a href="https://shahramshakiba.github.io/Todo-List/" target="_blank">
    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Objects/Light%20Bulb.webp" alt="Light Bulb" width="25" height="25" /> Minimal Todo-List Application Demo
-</a> <br/><br/><br/>
+</a> <br/><br/>
 
 
 
