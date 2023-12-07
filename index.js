@@ -9,7 +9,8 @@ let editId;
 let isEditTodo = false;
 
 //getting todo-items, retrieved from the localStorage
-todos = JSON.parse(localStorage.getItem('todo-list'));
+const savedTodos = JSON.parse(localStorage.getItem('todo-list'));
+let todos = savedTodos ? savedTodos : [];
 
 //=============> Show Todo List ==========
 const showTodo = (filter) => {
@@ -55,7 +56,11 @@ const showTodo = (filter) => {
   });
 
   //show todo in todo-box
-  todoBox.innerHTML = todoList || `<span>You don't have any todo here!</span>`;
+  if (todoList === '') {
+    todoBox.innerHTML = "<span>You don't have any todo here!</span>"; // properly setting the message
+  } else {
+    todoBox.innerHTML = todoList;
+  }
 
   let checkTodo = todoBox.querySelectorAll('.task');
 
